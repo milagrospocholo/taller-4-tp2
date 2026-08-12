@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Interfaces Reactivas</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Fuente Google Fonts: Inter para una tipografía premium y minimalista -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- P5.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+<body>
+  <!-- Barra de navegación superior permanente -->
+  <header class="navbar">
+    <nav class="nav-links">
+      <button class="nav-btn active" onclick="selectScreen('memoria')">Memoria</button>
+      <button class="nav-btn" onclick="selectScreen('herencia')">Herencia</button>
+      <button class="nav-btn" onclick="selectScreen('caducidad')">Caducidad</button>
+      <button class="nav-btn" onclick="selectScreen('identidad')">Identidad</button>
+      <button class="nav-btn" onclick="selectScreen('empatia')">Empatía</button>
+      <button class="nav-btn" onclick="selectScreen('colaboracion')">Colaboración</button>
+      <button class="nav-btn" onclick="selectScreen('incertidumbre')">Incertidumbre</button>
+      <button class="nav-btn" onclick="selectScreen('ansiedad')">Ansiedad</button>
+      <button class="nav-btn" onclick="selectScreen('expectativa')">Expectativa</button>
+    </nav>
+  </header>
+
+  <!-- Contenedor del lienzo de p5.js -->
+  <main id="canvas-container"></main>
+
+  <!-- Scripts del sistema base -->
+  <script src="screen_base.js"></script>
+
+  <!-- Scripts de las pantallas individuales -->
+  <script src="screens/memoria.js"></script>
+  <script src="screens/herencia.js"></script>
+  <script src="screens/caducidad.js"></script>
+  <script src="screens/identidad.js"></script>
+  <script src="screens/empatia.js"></script>
+  <script src="screens/colaboracion.js"></script>
+  <script src="screens/incertidumbre.js"></script>
+  <script src="screens/ansiedad.js"></script>
+  <script src="screens/expectativa.js"></script>
+
+  <!-- Script controlador principal -->
+  <script src="sketch.js"></script>
+</body>
+</html>

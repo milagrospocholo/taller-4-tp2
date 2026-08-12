@@ -1,0 +1,117 @@
+/* Variables del sistema de diseño */
+:root {
+  --color-bg: #0a0b0d;
+  --color-navbar: rgba(26, 29, 36, 0.75);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-text-inactive: #94a3b8;
+  --color-text-active: #ffffff;
+  --color-accent-blue: #00f2fe;
+  --color-accent-pink: #ff007f;
+  
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --navbar-height: 60px;
+}
+
+/* Reset y estilos base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  font-family: var(--font-family);
+  color: var(--color-text-active);
+}
+
+/* Contenedor del lienzo de p5.js */
+#canvas-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Barra de navegación superior fija */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  background-color: var(--color-navbar);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 0 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+  max-width: 1200px;
+  width: 100%;
+  justify-content: space-around;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.nav-links::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Botones de navegación */
+.nav-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-inactive);
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-btn:hover {
+  color: var(--color-text-active);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* Estado activo del botón */
+.nav-btn.active {
+  color: var(--color-text-active);
+  background-color: rgba(255, 255, 255, 0.08);
+  font-weight: 600;
+}
+
+/* Pequeña barra indicadora para el botón activo */
+.nav-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  width: 70%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent-blue), var(--color-accent-pink));
+  border-radius: 2px;
+}
+
+/* Estilos para el focus del botón por accesibilidad */
+.nav-btn:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: -2px;
+}

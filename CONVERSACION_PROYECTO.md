@@ -35,7 +35,7 @@ Tp2 Taller 4/
     ├── identidad.js             # Placeholder interactivo de la pantalla Identidad
     ├── empatia.js               # Placeholder interactivo de la pantalla Empatía
     ├── colaboracion.js          # Placeholder interactivo de la pantalla Colaboración
-    ├── incertidumbre.js         # Placeholder interactivo de la pantalla Incertidumbre
+    ├── incertidumbre.js         # Implementación final de la pantalla Incertidumbre
     ├── ansiedad.js              # Implementación final de la pantalla Ansiedad
     └── expectativa.js           # Placeholder interactivo de la pantalla Expectativa
 ```
@@ -55,7 +55,7 @@ Para garantizar que todas las interfaces formen parte de un único universo grá
 - **Trazos / Estructuras base:** `#e2e8f0` (Blanco tiza o gris claro para dar neutralidad).
 - **Acento Primario (Frío):** `#00f2fe` (Cian eléctrico vibrante para reactividad energética).
 - **Acento Secundario (Cálido):** `#ff007f` (Magenta/Rosa neón intenso para tensión o contraste emocional).
-- **Estética de Trazos:** Diseños limpios usando `noFill()` y `stroke()` con grosores finos y controlados (1.5px a 8px) para asemejar un diagrama alámbrico o "wireframe" de alta precisión.
+- **Estética de Trazos:** Diseños limpios usando `noFill()` and `stroke()` con grosores finos y controlados (1.5px a 8px) para asemejar un diagrama alámbrico o "wireframe" de alta precisión.
 
 ### Estilo de Movimiento
 - Desplazamiento orgánico, suave y amortiguado.
@@ -92,7 +92,7 @@ Para garantizar que todas las interfaces formen parte de un único universo grá
 - **Concepto:** Representar el desgaste, la atenuación y la desaparición irreversible de algo que se agota progresivamente con cada interacción.
 - **Interacción (Primera Versión):** Un círculo de 90px de diámetro en el centro que saltaba a otra posición aleatoria del lienzo cada vez que el mouse pasaba por encima, reduciendo su intensidad hasta desaparecer en 8 interacciones.
 - **Corrección Estática e Intensidad (Versión Final):**
-  - **Posición Fija:** El círculo debe permanecer **completamente quieto** en el centro geométrico de la pantalla. No se mueve ni cambia de posición durante toda la interacción.
+  - **Posición Fija:** El círculo permanece **completamente quieto** en el centro geométrico de la pantalla. No se mueve ni cambia de posición durante toda la interacción.
   - **Tamaño Grande:** Se aumentó el diámetro de la figura a **260 píxeles** para otorgarle jerarquía sin llegar a copar todo el lienzo.
   - **Estado Inicial Muy Luminoso:** Inicia a máxima intensidad (`intensity = 1.0`, `alpha = 255`) en color cian eléctrico (`#00f2fe`) y con un grosor de trazo robusto de **8.0 píxeles** para simular una presencia brillante.
   - **Desgaste por Hover-In:** Para restar intensidad, el mouse debe entrar en el círculo. Se creó una bandera lógica (`isHovered`) para disparar el desgaste solo en el instante en que el cursor cruza el perímetro.
@@ -101,3 +101,18 @@ Para garantizar que todas las interfaces formen parte de un único universo grá
     - La opacidad (`alpha`) decae progresivamente.
     - El grosor del trazo se afina linealmente desde los 8.0px iniciales hasta un mínimo de 1.0px, expresando visualmente el debilitamiento.
   - **Desaparición Irreversible:** En la décima interacción, el círculo desaparece del todo del renderizado (`active = false`) de forma irreversible.
+
+---
+
+### Fase 4: Implementación de la Pantalla "Incertidumbre" (Aprobado)
+- **Concepto:** Representar la incertidumbre a través del comportamiento errático y la imposibilidad de anticipar qué va a ocurrir después en cada interacción física.
+- **Estado Inicial (Orden Simétrico):** Se dibuja una grilla fija de **12 figuras** organizada en 4 columnas por 3 filas (4 círculos, 4 cuadrados y 4 triángulos). Todos los elementos inician con la misma escala (70px), sin rotación y pintados en color blanco para transmitir una sensación inicial de equilibrio, estructura y tranquilidad.
+- **Interacción (Acción Única e Impredecible):** Al presionar el mouse, el sistema selecciona de manera aleatoria **una sola acción** de entre 6 posibilidades, logrando que el comportamiento sea completamente indescifrable:
+  - **Acción 0 (Aparición):** Introduce una figura nueva de la paleta cromática en un lugar libre aleatorio. El tamaño escala progresivamente desde 0 mediante interpolación.
+  - **Acción 1 (Desaparición):** Elige una figura al azar y reduce su escala objetivo a 0 para removerla ordenadamente.
+  - **Acción 2 (Cambio de Tamaño):** Modifica el tamaño objetivo de una figura aleatoria hacia una escala pequeña (30px) o muy grande (150px).
+  - **Acción 3 (Cambio de Color):** Cambia el color de trazo de una figura al azar (blanco, cian o magenta).
+  - **Acción 4 (Intercambio de Posición):** Elige dos figuras cualesquiera y cruza sus variables de destino (`targetX`, `targetY`), haciendo que viajen suavemente y se crucen de manera cruzada.
+  - **Acción 5 (Rotación General):** Rota simultáneamente todas las figuras un ángulo aleatorio.
+- **Animación e Interpolación:** Todas las propiedades de posición, escala y ángulo se actualizan mediante interpolación lineal (`lerp`), evitando saltos visuales abruptos y proporcionando suavidad al caos inducido.
+- **Estado Final:** No existe. El diseño final tras interactuar es un resultado emergente, único y diferente en cada sesión.
